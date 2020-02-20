@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :answers, dependent: :nullify
+  has_many :answers, dependent: :destroy
+  has_many :challenges, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_secure_password
 
