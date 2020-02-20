@@ -1,6 +1,7 @@
 class Challenge < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  has_many :answers, dependent: :destroy
 
   validates :name, presence: true
   validates :question, presence: true
