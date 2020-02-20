@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @current_user ||= authenticate_api_token
+    @_current_user ||= authenticate_api_token
   end
 
   protected
