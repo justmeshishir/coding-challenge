@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   #
   post 'signup', to: 'users#signup', as: :signup
   get 'signin', to: 'users#signin', as: :signin
+
+  resources :challenges
 end
