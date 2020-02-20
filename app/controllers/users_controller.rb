@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_action :require_login!, only: :signup
+
   def signup
     @user = User.new(user_params)
     if @user.save
