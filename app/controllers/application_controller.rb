@@ -2,7 +2,6 @@ class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :require_login!
-  helper_method :current_user
 
   def require_login!
     return true if authenticate_api_token
@@ -11,7 +10,7 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @_current_user ||= authenticate_api_token
+    @current_user ||= authenticate_api_token
   end
 
   protected
