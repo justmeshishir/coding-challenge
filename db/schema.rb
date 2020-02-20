@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_124036) do
+ActiveRecord::Schema.define(version: 2020_02_20_125908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "challenges", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", default: "", null: false
+    t.text "question", default: "", null: false
+    t.integer "difficulty_level", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_challenges_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
