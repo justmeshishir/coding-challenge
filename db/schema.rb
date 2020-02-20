@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_02_20_135529) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "skill_level", default: 0
     t.string "api_token"
+    t.index ["api_token"], name: "index_users_on_api_token"
   end
 
   add_foreign_key "challenges", "categories"
