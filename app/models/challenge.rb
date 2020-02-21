@@ -8,6 +8,18 @@ class Challenge < ApplicationRecord
 
   enum difficulty_level: %i[easy medium difficult]
 
+  def payload
+    {
+      id: id,
+      name: name,
+      description: description,
+      question: question,
+      difficulty_level: difficulty_level,
+      user_id: user.id,
+      category_name: category_name
+    }
+  end
+
   def top_challenges
     Challenge.last(10)
   end

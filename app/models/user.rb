@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   def payload
     {
+      id: id,
       email: email,
       username: username,
       first_name: first_name,
