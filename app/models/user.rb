@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   def notify_voters
     get_upvotes.last(10).each do |voter|
-      NotificationMailer.thank_for_upvote voter, self
+      NotificationMailer.thank_for_upvote(voter, self).deliver_later
     end
   end
 end
