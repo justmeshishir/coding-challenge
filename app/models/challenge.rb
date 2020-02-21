@@ -16,7 +16,8 @@ class Challenge < ApplicationRecord
       question: question,
       difficulty_level: difficulty_level,
       user_id: user.id,
-      category_name: category_name
+      category_name: category_name,
+      answers: answers.map(&:payload)
     }
   end
 
