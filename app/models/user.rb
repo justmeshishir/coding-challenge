@@ -16,6 +16,17 @@ class User < ApplicationRecord
 
   before_create :create_api_token
 
+  def payload
+    {
+      email: email,
+      username: username,
+      first_name: first_name,
+      last_name: last_name,
+      skill_level: skill_level,
+      api_token: api_token
+    }
+  end
+
   def create_api_token
     begin
       self.api_token = SecureRandom.hex
