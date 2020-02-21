@@ -1,6 +1,5 @@
 class Challenge < ApplicationRecord
   belongs_to :user
-  belongs_to :category
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -8,4 +7,8 @@ class Challenge < ApplicationRecord
   validates :question, presence: true
 
   enum difficulty_level: %i[easy medium difficult]
+
+  def top_challenges
+    Challenge.last(10)
+  end
 end

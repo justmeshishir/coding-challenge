@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 2020_02_20_224921) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "challenges", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", default: "", null: false
@@ -39,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_02_20_224921) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "category_id"
+    t.string "category_name"
     t.index ["user_id"], name: "index_challenges_on_user_id"
   end
 
@@ -82,5 +76,4 @@ ActiveRecord::Schema.define(version: 2020_02_20_224921) do
     t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
   end
 
-  add_foreign_key "challenges", "categories"
 end
