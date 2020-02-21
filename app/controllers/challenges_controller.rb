@@ -15,6 +15,11 @@ class ChallengesController < ApplicationController
     end
   end
 
+  # TODO: not working
+  def top_challenges
+    render json: { status: 'success', data: Challenge.top_challenges.map(&:payload) }, status: :ok
+  end
+
   private
 
   def challenge_params

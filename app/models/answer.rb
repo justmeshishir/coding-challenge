@@ -12,7 +12,9 @@ class Answer < ApplicationRecord
       body: body,
       challenge_id: challenge.id,
       user_id: user.id,
-      created_at: created_at
+      created_at: created_at,
+      upvotes: get_upvotes.size,
+      downvotes: get_downvotes.size
     }
   end
 end

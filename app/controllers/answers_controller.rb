@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
 
       render json: { status: 'success', message: 'Downvoted' }, status: :ok
     else
-      render json: { status: 'error', message: 'Could not Downvote' }, status: :unprocessable_entity
+      render json: { status: 'error', message: 'Could not Downvote. Must have atleast 10 skill level.' }, status: :unprocessable_entity
     end
   end
 

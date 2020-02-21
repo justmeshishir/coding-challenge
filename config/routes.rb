@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#signup', as: :signup
   get 'signin', to: 'users#signin', as: :signin
 
-  resources :challenges
+  resources :challenges, only: [:index, :create]
+
+  get 'challenges/top', to: 'challenges#top', as: :top_challenge
 
   resources :answers, only: [:index, :create] do
     member do

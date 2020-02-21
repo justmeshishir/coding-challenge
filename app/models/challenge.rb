@@ -21,7 +21,7 @@ class Challenge < ApplicationRecord
     }
   end
 
-  def top_challenges
+  def self.top_challenges
     Challenge.last(10)
   end
 end
