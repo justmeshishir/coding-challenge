@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :challenges, only: [:index, :create]
 
-  get 'challenges/top', to: 'challenges#top', as: :top_challenge
+  get 'challenges/top', to: 'challenges#top_challenges', as: :top_challenge
 
   resources :answers, only: [:index, :create] do
     member do

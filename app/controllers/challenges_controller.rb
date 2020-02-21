@@ -15,9 +15,10 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # TODO: not working
+  # TODO: need to think of different algorithm
   def top_challenges
-    render json: { status: 'success', data: Challenge.top_challenges.map(&:payload) }, status: :ok
+    challenges = Challenge.top_challenges.map(&:payload)
+    render json: { status: 'success', data: challenges }, status: :ok
   end
 
   private
