@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_secure_password
+  acts_as_voter
 
   before_validation do
     self.email = email.to_s.downcase
@@ -19,5 +20,26 @@ class User < ApplicationRecord
     begin
       self.api_token = SecureRandom.hex
     end while self.class.exists?(api_token: api_token)
+  end
+
+  def upgrade_skill_level
+    self.skill_level = skill_level + 1
+    notify_voters
+  end
+
+  def downgrade_skill_level
+    self.skill_level = skill_level - 1
+  end
+
+  def can_downvote?
+    skill_level >= 10
+  end
+
+  private
+
+  def notify_voters
+    get_upvotes.last(10).each do |voter|
+      NotificationMailer.thank_for_upvote voter, self
+    end
   end
 end

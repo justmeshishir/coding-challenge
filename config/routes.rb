@@ -5,4 +5,11 @@ Rails.application.routes.draw do
   get 'signin', to: 'users#signin', as: :signin
 
   resources :challenges
+
+  resources :answers, only: [:index, :create] do
+    member do
+      put 'upvote', to: 'answers#upvote'
+      put 'downvote', to: 'answers#downvote'
+    end
+  end
 end
