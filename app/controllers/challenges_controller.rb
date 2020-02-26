@@ -15,7 +15,6 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # TODO: need to think of different algorithm
   def top_challenges
     challenges = Challenge.top_challenges.map(&:payload)
     render json: { status: 'success', data: challenges }, status: :ok

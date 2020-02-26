@@ -2,6 +2,7 @@ class Challenge < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :top_challenges, dependent: :destroy
 
   validates :name, presence: true
   validates :question, presence: true
