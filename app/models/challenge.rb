@@ -22,7 +22,23 @@ class Challenge < ApplicationRecord
     }
   end
 
-  def self.top_challenges
-    Challenge.last(10)
+  def self.top_challenges(start_date = nil, end_date = nil)
+    start_date ||= Date.today
+    end_date ||= Date.today + 1.week
+
+    q =
+    <<-SQL
+    SELECT id, answer_count
+    FROM (
+      SELECT c.id, COUNT(a.id) AS answer_count
+      FROM challenges c, answers a
+      WHERE a.challenge_id = c.id
+      AND c.created_at >= '#{start_date.to_s}'
+      AND c.created_at <= '#{end_date.to_s}'
+      GROUP BY c.id
+      ORDER BY 2 DESC ) as ans
+      LIMIT 5;
+    SQL
+    ActiveRecord::Base.connection.exec_query(q).map{ |x| OpenStruct.new(x) }
   end
 end

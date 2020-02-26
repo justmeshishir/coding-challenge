@@ -16,8 +16,8 @@ class ChallengesController < ApplicationController
   end
 
   def top_challenges
-    challenges = Challenge.top_challenges.map(&:payload)
-    render json: { status: 'success', data: challenges }, status: :ok
+    challenges = TopChallenge.last(5).map(&:challenge)
+    render json: { status: 'success', data: challenges.map(&:payload) }, status: :ok
   end
 
   private
