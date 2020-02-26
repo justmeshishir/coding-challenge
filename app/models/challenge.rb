@@ -37,7 +37,7 @@ class Challenge < ApplicationRecord
       AND c.created_at <= '#{end_date.to_s}'
       GROUP BY c.id
       ORDER BY 2 DESC ) as ans
-      LIMIT 5;
+      LIMIT 10;
     SQL
     ActiveRecord::Base.connection.exec_query(q).map{ |x| OpenStruct.new(x) }
   end
